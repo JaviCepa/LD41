@@ -5,5 +5,8 @@ using UnityEngine;
 public class Actor : MonoBehaviour {
 
 	public float walkSpeed = 1;
+	public int health = 1;
+
+
 
 }

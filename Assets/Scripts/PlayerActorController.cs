@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerActorController : ActorController
 {
 
-	new void Update ()
+	void Update ()
 	{
 		var horizontal = Input.GetAxisRaw("Horizontal");
 		var vertical = Input.GetAxisRaw("Vertical");
@@ -27,8 +27,6 @@ public class PlayerActorController : ActorController
 		{
 			Attack();
 		}
-
-		base.Update();
 	}
 
 }

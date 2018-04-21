@@ -1,25 +1,26 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 public class CameraController : MonoBehaviour
 {
 
 	public Transform target;
-	public float dampening = 0.5f;
-
-	void Start ()
-	{
-		
-	}
+	public float distance = 30;
 	
 	void LateUpdate ()
 	{
 		if (target)
 		{
-			var delta = target.position-transform.position;
-			var error = Vector3.ProjectOnPlane(delta, transform.forward);
-			transform.position += error * dampening;
+			UpdatePosition();
 		}
+	}
+
+	[Button("Reposition")]
+	private void UpdatePosition()
+	{
+		transform.position = target.position - distance * transform.forward;
 	}
 }

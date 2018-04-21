@@ -25,18 +25,6 @@ public abstract class ActorController : MonoBehaviour
 		attackAnimation = GetComponentInChildren<DOTweenAnimation>();
 	}
 
-	protected void Update()
-	{
-		if (isWalking)
-		{
-			var screenHorizontalMove = Vector3.Dot(navMeshAgent.velocity, Camera.main.transform.right);
-
-			float deadZone = 0.1f;
-			if (screenHorizontalMove > deadZone) { LookRight(); }
-			if (screenHorizontalMove < -deadZone) { LookLeft(); }
-		}
-	}
-
 	protected void LookLeft()
 	{
 		transform.GetChild(0).localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
@@ -53,9 +41,17 @@ public abstract class ActorController : MonoBehaviour
 		attackAnimation.DORestart();
 	}
 
+	private void LateUpdate()
+	{
+		var screenHorizontalMove = Vector3.Dot(navMeshAgent.velocity, Camera.main.transform.right);
+		float deadZone = 0.1f;
+		if (screenHorizontalMove > deadZone) { LookRight(); }
+		if (screenHorizontalMove < -deadZone) { LookLeft(); }
+	}
+
 	public void Walk(Vector3 direction)
 	{
-		navMeshAgent.Move(new Vector3(direction.x, 0, direction.z) * Time.deltaTime * actor.walkSpeed);
+		navMeshAgent.velocity = new Vector3(direction.x, 0, direction.z) * actor.walkSpeed;
 		isWalking = true;
 	}
 

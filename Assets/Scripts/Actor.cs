@@ -1,10 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 
-public class Human : Actor
-{
+public class Actor : MonoBehaviour {
 
+	public float walkSpeed = 1;
 
 }

@@ -10,7 +10,7 @@ using System;
 public abstract class ActorController : MonoBehaviour
 {
 
-	public float walkSpeed = 1f;
+	Actor actor;
 
 	DOTweenAnimation attackAnimation;
 
@@ -20,6 +20,7 @@ public abstract class ActorController : MonoBehaviour
 
 	private void Awake()
 	{
+		actor = GetComponentInParent<Actor>();
 		navMeshAgent = GetComponent<NavMeshAgent>();
 		attackAnimation = GetComponentInChildren<DOTweenAnimation>();
 	}
@@ -28,7 +29,7 @@ public abstract class ActorController : MonoBehaviour
 	{
 		if (isWalking)
 		{
-			var screenHorizontalMove = Vector3.Dot(navMeshAgent.destination-transform.position, Camera.main.transform.right);
+			var screenHorizontalMove = Vector3.Dot(navMeshAgent.velocity, Camera.main.transform.right);
 
 			float deadZone = 0.1f;
 			if (screenHorizontalMove > deadZone) { LookRight(); }
@@ -54,7 +55,7 @@ public abstract class ActorController : MonoBehaviour
 
 	public void Walk(Vector3 direction)
 	{
-		navMeshAgent.SetDestination(transform.position + new Vector3(direction.x, 0, direction.z) * 2f);
+		navMeshAgent.Move(new Vector3(direction.x, 0, direction.z) * Time.deltaTime * actor.walkSpeed);
 		isWalking = true;
 	}
 

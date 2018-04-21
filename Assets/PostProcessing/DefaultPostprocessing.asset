@@ -43,7 +43,7 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       intensity: 4
-      radius: 0.68
+      radius: 0.34
       sampleCount: 16
       downsampling: 0
       forceForwardCompatibility: 0
@@ -73,7 +73,7 @@ MonoBehaviour:
     m_Settings:
       focusDistance: 56
       aperture: 0.25
-      focalLength: 135
+      focalLength: 116
       useCameraFov: 0
       kernelSize: 3
   motionBlur:

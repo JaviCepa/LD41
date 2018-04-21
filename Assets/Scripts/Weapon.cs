@@ -21,7 +21,7 @@ public class Weapon : MonoBehaviour
 	float lastDropTime = -10;
 	float lastUseTime = 0;
 
-	bool isReady { get { return Time.time - lastUseTime > 1f / rateOfFire; } }
+	bool isReady { get { return Time.time - lastUseTime > 1f / rateOfFire && currentOwner != null; } }
 
 	private void Awake()
 	{
@@ -77,7 +77,7 @@ public class Weapon : MonoBehaviour
 
 	public void Use(Actor target = null)
 	{
-		if (isReady)
+		if (isReady && target != null)
 		{
 			//TODO: Do damage
 			currentOwner.LookTo(target.transform.position);

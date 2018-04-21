@@ -19,9 +19,11 @@ public class PlayerController : MonoBehaviour
 
 		Vector3 walkVector = groundHorizontal * horizontal + groundVertical * vertical;
 
-		actor.Walk(walkVector);
-
-		if (horizontal == 0 && vertical == 0)
+		if (walkVector.magnitude > 0)
+		{
+			actor.Walk(walkVector);
+		}
+		else
 		{
 			actor.StopWalking();
 		}

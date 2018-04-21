@@ -3,13 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LineOfSightRenderer : MonoBehaviour {
+public class AttackRange : MonoBehaviour {
 
-	public float radius = 1;
+	public float radius { get { return radius_; } set { radius_ = value; UpdateAttackArea(); } }
+	float radius_ = 0;
 
 	public SphereCollider attackArea;
 
-	[Button("Update Attack Area")]
+	Actor actor;
+
+	private void Awake()
+	{
+		actor = GetComponentInParent<Actor>();
+	}
+	
 	public void UpdateAttackArea()
 	{
 		var lineRenderer = GetComponent<LineRenderer>();
@@ -23,4 +30,22 @@ public class LineOfSightRenderer : MonoBehaviour {
 		}
 		attackArea.radius = radius;
 	}
+
+	private void OnTriggerStay(Collider other)
+	{
+
+		if (!other.isTrigger)
+		{
+			var otherActor = other.GetComponent<Actor>();
+
+			if (otherActor != null && actor.currentWeapon != null)
+			{
+				if (otherActor.IsEnemyOf(actor))
+				{
+					actor.currentWeapon.Use(otherActor);
+				}
+			}
+		}
+	}
+
 }

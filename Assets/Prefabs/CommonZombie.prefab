@@ -36,11 +36,12 @@ GameObject:
   m_Component:
   - component: {fileID: 4007957400935968}
   - component: {fileID: 114176368400595532}
-  - component: {fileID: 114636574945791162}
   - component: {fileID: 195435819421189232}
   - component: {fileID: 135381255249336446}
+  - component: {fileID: 136973059254323568}
   - component: {fileID: 114674171061648002}
   - component: {fileID: 114287399973090652}
+  - component: {fileID: 54965609641098800}
   m_Layer: 0
   m_Name: CommonZombie
   m_TagString: Untagged
@@ -74,7 +75,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1576082776249054}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.43, y: 0, z: -3.82}
+  m_LocalPosition: {x: -21.57, y: 0, z: 4.18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4352800024782728}
@@ -100,7 +101,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1092053873746730}
-  m_LocalRotation: {x: 0.16634318, y: 0.49339625, z: -0.09675577, w: 0.8482502}
+  m_LocalRotation: {x: 0.16634326, y: 0.4933961, z: -0.09675578, w: 0.84825027}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -108,6 +109,21 @@ Transform:
   m_Father: {fileID: 4007957400935968}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 63.399002, y: 45.000004, z: 21.479}
+--- !u!54 &54965609641098800
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1576082776249054}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &114171649418544784
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -228,6 +244,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9af051ff0fa7654db64926a734da68f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  walkSpeed: 1
+  health: 1
 --- !u!114 &114287399973090652
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -269,17 +287,6 @@ MonoBehaviour:
   walkingAnimationSpeed: 1
   hopHeight: 0
   walkAnimationAsymmetry: 0.5
---- !u!114 &114636574945791162
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1576082776249054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c18fdb7a0bcbf24293bddf0c68424ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114666143185613796
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -353,6 +360,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 4
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &136973059254323568
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1576082776249054}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.75
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!195 &195435819421189232
 NavMeshAgent:
   m_ObjectHideFlags: 1

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Actor : MonoBehaviour
+public abstract class Actor : MonoBehaviour
 {
 
 	public float walkSpeed = 1;
@@ -18,6 +18,8 @@ public class Actor : MonoBehaviour
 
 	NavMeshAgent navMeshAgent;
 
+	public abstract bool IsEnemyOf(Actor actor);
+
 	public void Attack(Actor actor)
 	{
 		var weapon = currentWeapon;
@@ -27,7 +29,7 @@ public class Actor : MonoBehaviour
 		}
 	}
 
-	private void OnTriggerEnter(Collider other)
+	private void OnTriggerStay(Collider other)
 	{
 		var targetWeapon = other.GetComponent<Weapon>();
 		if (targetWeapon != null)
@@ -51,16 +53,6 @@ public class Actor : MonoBehaviour
 		navMeshAgent = GetComponent<NavMeshAgent>();
 	}
 
-	protected void LookLeft()
-	{
-		transform.GetChild(0).localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
-	}
-
-	protected void LookRight()
-	{
-		transform.GetChild(0).localScale = new Vector3(+1, transform.localScale.y, transform.localScale.z);
-	}
-
 	[Button("Attack")]
 	public void Attack()
 	{
@@ -70,25 +62,41 @@ public class Actor : MonoBehaviour
 		}
 	}
 
-	private void LateUpdate()
+	public void Walk(GameObject target)
 	{
-		var screenHorizontalMove = Vector3.Dot(navMeshAgent.velocity, Camera.main.transform.right);
-		float deadZone = 0.1f;
-		if (screenHorizontalMove > deadZone) { LookRight(); }
-		if (screenHorizontalMove < -deadZone) { LookLeft(); }
+		Walk((target.transform.position - transform.position).normalized);
 	}
 
 	public void Walk(Vector3 direction)
 	{
 		if (!frozen)
 		{
-			navMeshAgent.velocity = new Vector3(direction.x, 0, direction.z) * walkSpeed;
+			navMeshAgent.velocity = new Vector3(direction.x, 0, direction.z).normalized * walkSpeed;
 			isWalking = true;
+			LookTo(transform.position + navMeshAgent.velocity);
 		}
 	}
 
 	public void StopWalking()
 	{
 		isWalking = false;
+	}
+
+	public void LookTo(Vector3 lookPosition)
+	{
+		var screenHorizontalProjection = Vector3.Dot(lookPosition - transform.position, Camera.main.transform.right);
+		float deadZone = 0.1f;
+		if (screenHorizontalProjection > deadZone) { LookRight(); }
+		if (screenHorizontalProjection < -deadZone) { LookLeft(); }
+	}
+
+	public void LookLeft()
+	{
+		transform.GetChild(0).localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
+	}
+
+	public void LookRight()
+	{
+		transform.GetChild(0).localScale = new Vector3(+1, transform.localScale.y, transform.localScale.z);
 	}
 }

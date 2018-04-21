@@ -38,7 +38,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4224446492526148}
   - component: {fileID: 114472732397844082}
-  - component: {fileID: 114172540003957142}
   - component: {fileID: 195840409500034270}
   - component: {fileID: 135283919356162672}
   - component: {fileID: 114351346129465410}
@@ -151,17 +150,6 @@ MonoBehaviour:
     m_NumColorKeys: 4
     m_NumAlphaKeys: 2
   currentIndex: 0
---- !u!114 &114172540003957142
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1775369967595122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c18fdb7a0bcbf24293bddf0c68424ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114351346129465410
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -186,6 +174,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9af051ff0fa7654db64926a734da68f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  walkSpeed: 1
+  health: 1
 --- !u!114 &114474073124133636
 MonoBehaviour:
   m_ObjectHideFlags: 1

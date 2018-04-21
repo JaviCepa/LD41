@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212052171165598400}
   - component: {fileID: 114809637838655294}
   - component: {fileID: 114676691212125502}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4476934546303934}
   - component: {fileID: 114134163719258914}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,9 @@ GameObject:
   - component: {fileID: 135497183328012972}
   - component: {fileID: 114115508694875396}
   - component: {fileID: 114414994129237346}
-  m_Layer: 0
+  - component: {fileID: 54570141319142060}
+  - component: {fileID: 136342103481764224}
+  m_Layer: 10
   m_Name: FatZombie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +73,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1357969061577900}
-  m_LocalRotation: {x: 0.16634321, y: 0.49339616, z: -0.09675577, w: 0.8482502}
+  m_LocalRotation: {x: 0.16634326, y: 0.4933961, z: -0.09675578, w: 0.84825027}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -86,7 +88,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1678558543937572}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.1, y: 0, z: -1.78}
+  m_LocalPosition: {x: -21.9, y: 0, z: 0.22000003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4476934546303934}
@@ -106,6 +108,21 @@ Transform:
   m_Father: {fileID: 4476934546303934}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &54570141319142060
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1678558543937572}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &114095238677745732
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -130,7 +147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b98a6db0b653f764eac834f85857a9dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _serializedBlackboard: '{"_variables":{}}'
+  _serializedBlackboard: '{"_variables":{"target":{"_name":"target","_id":"bbee3f0c-2ce8-49cd-9bc9-c34f03ed6821","$type":"NodeCanvas.Framework.Variable`1[[UnityEngine.GameObject,
+    UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"}}}'
   _objectReferences: []
 --- !u!114 &114134163719258914
 MonoBehaviour:
@@ -232,6 +250,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 3
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &136342103481764224
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1678558543937572}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.75
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!195 &195859765276456472
 NavMeshAgent:
   m_ObjectHideFlags: 1

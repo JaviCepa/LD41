@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212825577408969578}
   - component: {fileID: 114077294310171242}
   - component: {fileID: 114965323599160772}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Legs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 4778327022261482}
   - component: {fileID: 212263466141242474}
   - component: {fileID: 114649665128082058}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 4373858289652562}
   - component: {fileID: 212365777046447276}
   - component: {fileID: 114144760792552724}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Hair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4189625658757510}
   - component: {fileID: 114080818168487298}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 195359595927372384}
   - component: {fileID: 54096839394263146}
   - component: {fileID: 136089317356094754}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Human
   m_TagString: Human
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 120396131112521576}
   - component: {fileID: 114127146158405316}
   - component: {fileID: 135178714495248218}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AttackRadius
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 4773094449516272}
   - component: {fileID: 212129864823012452}
   - component: {fileID: 114351404683478220}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Torso
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,7 +143,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4959015440124512}
   - component: {fileID: 114804552021649686}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 4049800624258982}
   - component: {fileID: 198446474668708670}
   - component: {fileID: 199764469005736156}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RunParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}

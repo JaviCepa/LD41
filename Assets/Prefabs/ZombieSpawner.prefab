@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4509591036562242}
-  - component: {fileID: 114437674491344428}
+  - component: {fileID: 114738982997188686}
   m_Layer: 0
   m_Name: ZombieSpawner
   m_TagString: Untagged
@@ -40,7 +40,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114437674491344428
+--- !u!114 &114738982997188686
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -48,8 +48,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1433270229806990}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04080b953dc2e7c41b8bb5e812103ae6, type: 3}
+  m_Script: {fileID: 11500000, guid: 431d5d4f9fb19354a823846a0dedd4d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRadius: 2
-  spawnerColor: {r: 0, g: 1, b: 0.25517225, a: 1}
+  spawnRadius: 5
+  spawnerColor: {r: 0, g: 1, b: 0.17241383, a: 1}

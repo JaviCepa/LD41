@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4352800024782728}
   - component: {fileID: 114384971251658210}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 114674171061648002}
   - component: {fileID: 114287399973090652}
   - component: {fileID: 54965609641098800}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CommonZombie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,7 +61,7 @@ GameObject:
   - component: {fileID: 114666143185613796}
   - component: {fileID: 114572812136529158}
   - component: {fileID: 114171649418544784}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}

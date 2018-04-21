@@ -36,8 +36,8 @@ public class Weapon : MonoBehaviour
 			if (ownerHand != null)
 			{
 				currentOwner = newOwner;
-				currentOwner.Freeze();
 				currentOwner.LookRight();
+				currentOwner.Freeze();
 				pickupCollider.enabled = false;
 				if (currentOwner.currentWeapon != null)
 				{

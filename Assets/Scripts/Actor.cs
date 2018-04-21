@@ -29,7 +29,7 @@ public abstract class Actor : MonoBehaviour
 		}
 	}
 
-	private void OnTriggerStay(Collider other)
+	protected void OnTriggerStay(Collider other)
 	{
 		var targetWeapon = other.GetComponent<Weapon>();
 		if (targetWeapon != null)
@@ -84,19 +84,29 @@ public abstract class Actor : MonoBehaviour
 
 	public void LookTo(Vector3 lookPosition)
 	{
-		var screenHorizontalProjection = Vector3.Dot(lookPosition - transform.position, Camera.main.transform.right);
-		float deadZone = 0.1f;
-		if (screenHorizontalProjection > deadZone) { LookRight(); }
-		if (screenHorizontalProjection < -deadZone) { LookLeft(); }
+		if (!frozen)
+		{
+			var screenHorizontalProjection = Vector3.Dot(lookPosition - transform.position, Camera.main.transform.right);
+			float deadZone = 0.1f;
+			if (screenHorizontalProjection > deadZone) { LookRight(); }
+			if (screenHorizontalProjection < -deadZone) { LookLeft(); }
+		}
 	}
 
 	public void LookLeft()
 	{
-		transform.GetChild(0).localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
+		if (!frozen)
+		{
+			transform.GetChild(0).localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
+		}
 	}
 
 	public void LookRight()
 	{
-		transform.GetChild(0).localScale = new Vector3(+1, transform.localScale.y, transform.localScale.z);
+
+		if (!frozen)
+		{
+			transform.GetChild(0).localScale = new Vector3(+1, transform.localScale.y, transform.localScale.z);
+		}
 	}
 }

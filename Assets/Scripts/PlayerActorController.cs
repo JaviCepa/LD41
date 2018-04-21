@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerActorController : ActorController
 {
 
+	public HumanInput humanInput;
+
 	void Update ()
 	{
 		var horizontal = Input.GetAxisRaw("Horizontal");

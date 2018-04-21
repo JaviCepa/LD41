@@ -35,6 +35,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4007957400935968}
+  - component: {fileID: 114176368400595532}
   - component: {fileID: 114636574945791162}
   - component: {fileID: 195435819421189232}
   - component: {fileID: 135381255249336446}
@@ -216,6 +217,17 @@ MonoBehaviour:
   optionalRotationMode: 0
   optionalScrambleMode: 0
   optionalString: 
+--- !u!114 &114176368400595532
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1576082776249054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9af051ff0fa7654db64926a734da68f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114287399973090652
 MonoBehaviour:
   m_ObjectHideFlags: 1

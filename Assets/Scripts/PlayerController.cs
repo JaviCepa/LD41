@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerActorController : ActorController
+public class PlayerController : MonoBehaviour
 {
 
-	public HumanInput humanInput;
+	public Actor actor { get { if (actor_ == null) { actor_ = GetComponent<Actor>(); }; return actor_; } }
+	Actor actor_;
 
 	void Update ()
 	{
@@ -18,16 +19,16 @@ public class PlayerActorController : ActorController
 
 		Vector3 walkVector = groundHorizontal * horizontal + groundVertical * vertical;
 
-		Walk(walkVector);
+		actor.Walk(walkVector);
 
 		if (horizontal == 0 && vertical == 0)
 		{
-			StopWalking();
+			actor.StopWalking();
 		}
 
 		if (fire > 0)
 		{
-			Attack();
+			actor.Attack();
 		}
 	}
 

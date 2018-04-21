@@ -7,13 +7,10 @@ public class LineOfSightRenderer : MonoBehaviour {
 
 	public float radius = 1;
 
-	[Button("Draw Test Circle")]
-	public void DrawTestCircle()
-	{
-		DrawRadius();
-	}
+	public SphereCollider attackArea;
 
-	public void DrawRadius()
+	[Button("Update Attack Area")]
+	public void UpdateAttackArea()
 	{
 		var lineRenderer = GetComponent<LineRenderer>();
 		for (int i = 0; i < lineRenderer.positionCount; i++)
@@ -24,5 +21,6 @@ public class LineOfSightRenderer : MonoBehaviour {
 			var circlePosition = direction * radius;
 			lineRenderer.SetPosition(i, circlePosition);
 		}
+		attackArea.radius = radius;
 	}
 }

@@ -17,13 +17,11 @@ public class Building : MonoBehaviour {
 	public SpriteRenderer spriteRenderer2;
 
 	float startHeight = 10;
-	Vector3 startPosition;
 
 	bool isVisible = true;
 
 	void Start ()
 	{
-		startPosition = topPart.localPosition;
 		startHeight = height;
 	}
 	

@@ -16,8 +16,8 @@ public class WalkSpriteController : MonoBehaviour
 	Sprite walkingSprite { get { return walkSprites[spritePicker.currentIndex]; } }
 	SpriteRenderer spriteRenderer { get { if (spriteRenderer_ == null) { spriteRenderer_ = GetComponent<SpriteRenderer>(); } return spriteRenderer_; } }
 	SpriteRenderer spriteRenderer_;
-	ActorController actorController { get { if (actorController_ == null) { actorController_ = GetComponentInParent<ActorController>(); } return actorController_; } }
-	ActorController actorController_;
+	Actor actorController { get { if (actorController_ == null) { actorController_ = GetComponentInParent<Actor>(); } return actorController_; } }
+	Actor actorController_;
 
 	void Awake()
 	{

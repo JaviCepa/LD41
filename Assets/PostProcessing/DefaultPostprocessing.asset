@@ -37,18 +37,18 @@ MonoBehaviour:
       taaSettings:
         jitterSpread: 0.483
         sharpen: 0
-        stationaryBlending: 0.857
+        stationaryBlending: 0.791
         motionBlending: 0.725
   ambientOcclusion:
-    m_Enabled: 0
+    m_Enabled: 1
     m_Settings:
-      intensity: 1
-      radius: 0.3
-      sampleCount: 10
-      downsampling: 1
+      intensity: 4
+      radius: 0.68
+      sampleCount: 16
+      downsampling: 0
       forceForwardCompatibility: 0
       ambientOnly: 0
-      highPrecision: 0
+      highPrecision: 1
   screenSpaceReflection:
     m_Enabled: 0
     m_Settings:
@@ -67,7 +67,7 @@ MonoBehaviour:
         fresnelFade: 1
         fresnelFadePower: 1
       screenEdgeMask:
-        intensity: 0.03
+        intensity: 0.072
   depthOfField:
     m_Enabled: 1
     m_Settings:
@@ -100,10 +100,10 @@ MonoBehaviour:
     m_Enabled: 0
     m_Settings:
       bloom:
-        intensity: 36.67
-        threshold: 1.09
-        softKnee: 0.615
-        radius: 1.45
+        intensity: 35.71
+        threshold: 1.24
+        softKnee: 0.818
+        radius: 1.8
         antiFlicker: 0
       lensDirt:
         texture: {fileID: 0}
@@ -284,9 +284,9 @@ MonoBehaviour:
     m_Enabled: 0
     m_Settings:
       spectralTexture: {fileID: 0}
-      intensity: 1
+      intensity: 0.681
   grain:
-    m_Enabled: 1
+    m_Enabled: 0
     m_Settings:
       colored: 0
       intensity: 0.177

@@ -7,18 +7,20 @@ using System;
 public class Human : Actor
 {
 
-	float lookoutDistance = 2f;
+	float defaultLookoutDistance = 2f;
 
 	public override bool IsEnemyOf(Actor actor)
 	{
 		return !(actor is Human);
 	}
 
-	private void LateUpdate()
+	private void Update()
 	{
 		GameObject nearestObject = null;
 		float minDistance = float.MaxValue;
-		foreach (var zombieCollider in Physics.OverlapSphere(transform.position, lookoutDistance, LayerMask.GetMask("Zombies")))
+		var lookOutDistance = (currentWeapon != null) ? defaultLookoutDistance + currentWeapon.range : defaultLookoutDistance;
+
+		foreach (var zombieCollider in Physics.OverlapSphere(transform.position, lookOutDistance, LayerMask.GetMask("Zombies")))
 		{
 			if (!zombieCollider.isTrigger)
 			{
@@ -32,7 +34,7 @@ public class Human : Actor
 		}
 		if (nearestObject != null)
 		{
-			LookTo(nearestObject.transform.position);
+			LookTo(nearestObject.transform.position, 5);
 		}
 	}
 

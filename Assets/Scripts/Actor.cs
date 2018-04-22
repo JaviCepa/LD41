@@ -11,8 +11,9 @@ public abstract class Actor : MonoBehaviour
 	public float walkSpeed = 1;
 	public int health = 1;
 	public Weapon currentWeapon { get { return GetComponentInChildren<Weapon>(); } }
+	int currentLookPriority = 0;
 
-	bool frozen = false;
+	[HideInInspector] public bool frozen = false;
 
 	[HideInInspector] public bool isWalking { get { return !navMeshAgent.isStopped; } set { navMeshAgent.isStopped = !value; } }
 
@@ -28,7 +29,7 @@ public abstract class Actor : MonoBehaviour
 			currentWeapon.Use(actor);
 		}
 	}
-
+	
 	protected void OnTriggerStay(Collider other)
 	{
 		var targetWeapon = other.GetComponent<Weapon>();
@@ -73,7 +74,7 @@ public abstract class Actor : MonoBehaviour
 		{
 			navMeshAgent.velocity = new Vector3(direction.x, 0, direction.z).normalized * walkSpeed;
 			isWalking = true;
-			LookTo(transform.position + navMeshAgent.velocity);
+			LookTo(transform.position + navMeshAgent.velocity, 0);
 		}
 	}
 
@@ -82,15 +83,22 @@ public abstract class Actor : MonoBehaviour
 		isWalking = false;
 	}
 
-	public void LookTo(Vector3 lookPosition)
+	public void LookTo(Vector3 lookPosition, int lookPriority = 0)
 	{
-		if (!frozen)
+		if (!frozen && (lookPriority > currentLookPriority))
 		{
+			Debug.DrawLine(transform.position, lookPosition);
 			var screenHorizontalProjection = Vector3.Dot(lookPosition - transform.position, Camera.main.transform.right);
 			float deadZone = 0.1f;
 			if (screenHorizontalProjection > deadZone) { LookRight(); }
 			if (screenHorizontalProjection < -deadZone) { LookLeft(); }
+			currentLookPriority = lookPriority;
 		}
+	}
+
+	private void LateUpdate()
+	{
+		currentLookPriority = -1;
 	}
 
 	public void LookLeft()

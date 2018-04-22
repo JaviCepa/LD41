@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 120396131112521576}
   - component: {fileID: 114127146158405316}
   - component: {fileID: 135178714495248218}
-  m_Layer: 11
+  m_Layer: 9
   m_Name: AttackRadius
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -543,6 +543,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 4
   health: 1
+  frozen: 0
 --- !u!114 &114804552021649686
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -809,7 +810,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1845199422
+  randomSeed: -287357453
   InitialModule:
     serializedVersion: 3
     enabled: 1

@@ -17,11 +17,10 @@ public class Weapon : MonoBehaviour
 	Actor currentOwner = null;
 
 	DOTweenAnimation attackAnimation;
-
-	float lastDropTime = -10;
+	
 	float lastUseTime = 0;
 
-	bool isReady { get { return Time.time - lastUseTime > 1f / rateOfFire && currentOwner != null; } }
+	bool isReady { get { return Time.time - lastUseTime > rateOfFire && currentOwner != null; } }
 
 	private void Awake()
 	{
@@ -30,11 +29,12 @@ public class Weapon : MonoBehaviour
 
 	public void Pickup(Actor newOwner)
 	{
-		if (currentOwner == null && Time.time - lastDropTime > 2f)
+		if (currentOwner == null && !newOwner.frozen)
 		{
 			var ownerHand = newOwner.GetComponentInChildren<Hand>();
-			if (ownerHand != null)
+			if (ownerHand != null && ownerHand.isReady)
 			{
+				lastUseTime = Time.time;
 				currentOwner = newOwner;
 				currentOwner.LookRight();
 				currentOwner.Freeze();
@@ -50,6 +50,7 @@ public class Weapon : MonoBehaviour
 				.Join(transform.DOMoveY(ownerHand.transform.position.y, 0.3f).SetEase(Ease.OutBack))
 				.OnComplete(() =>
 				{
+					ownerHand.PickSomething();
 					transform.SetParent(ownerHand.transform);
 					transform.localPosition = Vector3.zero;
 					transform.rotation = Quaternion.identity;
@@ -66,7 +67,6 @@ public class Weapon : MonoBehaviour
 	{
 		currentOwner.GetComponentInChildren<AttackRange>().radius = 0;
 		pickupCollider.enabled = true;
-		lastDropTime = Time.time;
 		currentOwner = null;
 		transform.SetParent(null);
 		var sequence = DOTween.Sequence();

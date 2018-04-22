@@ -17,7 +17,7 @@ Shader "Custom/SobelFilter" {
 		float _DeltaAmount;
 		
 		float sobel (sampler2D tex, float2 uv) {
-			float2 delta = float2(_DeltaAmount, _DeltaAmount);
+			float2 delta = float2(_DeltaAmount, _DeltaAmount) * _ScreenParams.y;
 			
 			float4 hr = float4(0, 0, 0, 0);
 			float4 vt = float4(0, 0, 0, 0);

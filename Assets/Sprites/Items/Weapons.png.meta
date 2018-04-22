@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: e25e3984db30b8547b7d9f44583195c5
-timeCreated: 1524337737
+timeCreated: 1524353819
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -211,6 +211,20 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 57
+        y: 1
+        width: 6
+        height: 6
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Weapons_8
+      rect:
+        serializedVersion: 2
+        x: 65
         y: 1
         width: 6
         height: 6

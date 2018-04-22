@@ -26,7 +26,7 @@ public abstract class Actor : MonoBehaviour
 
 	[HideInInspector] public bool isWalking { get { return !navMeshAgent.isStopped; } set { navMeshAgent.isStopped = !value; } }
 
-	NavMeshAgent navMeshAgent;
+	protected NavMeshAgent navMeshAgent;
 	bool isVulnerable { get { return (Time.time - lastDamageTime) > invulnerabilityTime; } }
 	float lastDamageTime = 0;
 
@@ -41,6 +41,7 @@ public abstract class Actor : MonoBehaviour
 		newObject.transform.position = transform.position + Vector3.up * 1.5f;
 		healthBar = newObject.GetComponent<HealthBar>();
 		health = maxHealth;
+		navMeshAgent.speed = walkSpeed;
 	}
 
 	protected void OnTriggerStay(Collider other)

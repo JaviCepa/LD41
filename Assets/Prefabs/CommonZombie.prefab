@@ -39,8 +39,6 @@ GameObject:
   - component: {fileID: 195435819421189232}
   - component: {fileID: 135381255249336446}
   - component: {fileID: 136973059254323568}
-  - component: {fileID: 114674171061648002}
-  - component: {fileID: 114287399973090652}
   - component: {fileID: 54965609641098800}
   - component: {fileID: 82847117543409976}
   - component: {fileID: 114315397998986448}
@@ -335,21 +333,8 @@ MonoBehaviour:
   frozen: 0
   damageOnContact: 1
   attackRange: 0.5
---- !u!114 &114287399973090652
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1576082776249054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b98a6db0b653f764eac834f85857a9dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _serializedBlackboard: '{"_variables":{"target":{"_name":"target","_id":"0eb55591-f81c-4500-8fac-25c056f098b8","$type":"NodeCanvas.Framework.Variable`1[[UnityEngine.GameObject,
-    UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"},"destination":{"_name":"destination","_id":"20927c24-7a7f-428f-ad71-0b97901ad634","$type":"NodeCanvas.Framework.Variable`1[[UnityEngine.Transform,
-    UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"}}}'
-  _objectReferences: []
+  sightRadius: 3
+  currentState: 0
 --- !u!114 &114315397998986448
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -437,23 +422,6 @@ MonoBehaviour:
     m_NumColorKeys: 4
     m_NumAlphaKeys: 2
   currentIndex: 0
---- !u!114 &114674171061648002
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1576082776249054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aad115aca74ce3c4891b3f6de0b4aae8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boundGraphSerialization: 
-  boundGraphObjectReferences: []
-  enableAction: 0
-  disableAction: 0
-  _graph: {fileID: 11400000, guid: e371d1975ffd6014eba7d130ca6c1321, type: 2}
-  _blackboard: {fileID: 114287399973090652}
 --- !u!114 &114790616669546514
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -2046,6 +2046,7 @@ MonoBehaviour:
   - spawns: []
   healthBarPrefab: {fileID: 1252846760863606, guid: 38c7b8fd88c3d6443b1bd55eaa79acc5,
     type: 2}
+  humanBase: {fileID: 0}
 --- !u!4 &428100240
 Transform:
   m_ObjectHideFlags: 0
@@ -42689,45 +42690,6 @@ Prefab:
       propertyPath: m_Name
       value: Building (19)
       objectReference: {fileID: 0}
-    - target: {fileID: 1624171902074908, guid: 90210e7f1de57094ea41a28da95f9c51, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1325885643586126, guid: 90210e7f1de57094ea41a28da95f9c51, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 114198096437602118, guid: 90210e7f1de57094ea41a28da95f9c51,
-        type: 2}
-      propertyPath: height
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 212774527535266156, guid: 90210e7f1de57094ea41a28da95f9c51,
-        type: 2}
-      propertyPath: m_Size.y
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4910060363287790, guid: 90210e7f1de57094ea41a28da95f9c51, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 3.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4782550461715570, guid: 90210e7f1de57094ea41a28da95f9c51, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 3.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 212363569769949746, guid: 90210e7f1de57094ea41a28da95f9c51,
-        type: 2}
-      propertyPath: m_Size.y
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4324112193625888, guid: 90210e7f1de57094ea41a28da95f9c51, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 3.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4324112193625888, guid: 90210e7f1de57094ea41a28da95f9c51, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 6
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 90210e7f1de57094ea41a28da95f9c51, type: 2}
   m_IsPrefabParent: 0
@@ -44459,11 +44421,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114287399973090652, guid: 4bff1f8f7ddc541448d09bc48fd30bdc,
-        type: 2}
-      propertyPath: _objectReferences.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4007957400935968, guid: 4bff1f8f7ddc541448d09bc48fd30bdc, type: 2}
       propertyPath: m_LocalPosition.x
       value: -21.57
@@ -44496,18 +44453,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 114287399973090652, guid: 4bff1f8f7ddc541448d09bc48fd30bdc,
+    - target: {fileID: 114176368400595532, guid: 4bff1f8f7ddc541448d09bc48fd30bdc,
         type: 2}
-      propertyPath: _serializedBlackboard
-      value: '{"_variables":{"target":{"_name":"target","_id":"0eb55591-f81c-4500-8fac-25c056f098b8","$type":"NodeCanvas.Framework.Variable`1[[UnityEngine.GameObject,
-        UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"},"destination":{"_value":1,"_name":"destination","_id":"20927c24-7a7f-428f-ad71-0b97901ad634","$type":"NodeCanvas.Framework.Variable`1[[UnityEngine.Transform,
-        UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"}}}'
+      propertyPath: currentHealth_
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114287399973090652, guid: 4bff1f8f7ddc541448d09bc48fd30bdc,
+    - target: {fileID: 114176368400595532, guid: 4bff1f8f7ddc541448d09bc48fd30bdc,
         type: 2}
-      propertyPath: _objectReferences.Array.data[1]
-      value: 
-      objectReference: {fileID: 1708847603}
+      propertyPath: currentState
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4bff1f8f7ddc541448d09bc48fd30bdc, type: 2}
   m_IsPrefabParent: 0
@@ -46069,7 +46024,7 @@ GameObject:
   - component: {fileID: 1708847603}
   - component: {fileID: 1708847604}
   m_Layer: 0
-  m_Name: ZombiesTarget
+  m_Name: HumanBase (ZombiesTarget)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

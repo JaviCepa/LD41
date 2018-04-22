@@ -17,6 +17,7 @@ public class GameDirector : SerializedMonoBehaviour
 	int currentWaveIndex = 0;
 
 	public GameObject healthBarPrefab;
+	public HumanBase humanBase;
 
 	public static GameDirector instance;
 
@@ -26,6 +27,7 @@ public class GameDirector : SerializedMonoBehaviour
 		zombieSpawners = FindObjectsOfType<ZombieSpawner>();
 		humanSpawners = FindObjectsOfType<HumanSpawner>();
 		crateSpawners = FindObjectsOfType<CrateSpawner>();
+		humanBase = FindObjectOfType<HumanBase>();
 	}
 
 	void Start()
@@ -34,12 +36,20 @@ public class GameDirector : SerializedMonoBehaviour
 		SpawnNextWave();
 	}
 
+	private void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.Return))
+		{
+			SpawnNextWave();
+		}
+	}
+
 	[Button("Spawn next wave")]
 	public void SpawnNextWave()
 	{
 		Debug.Log("Spawning wave: " + currentWaveIndex);
 		SpawnWave(waves[currentWaveIndex]);
-		currentWaveIndex++;
+		//currentWaveIndex++;
 	}
 
 	void SpawnWave(EnemyWave wave)

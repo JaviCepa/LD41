@@ -7,8 +7,8 @@ public class Zombie : Actor
 {
 
 	public int damageOnContact = 1;
-	public float attackRange = 0.5f;
 	public float sightRadius = 3f;
+	float attackRange = 1f;
 
 	float wanderTimer = 0;
 
@@ -17,6 +17,8 @@ public class Zombie : Actor
 	public ZombieState currentState = ZombieState.Wandering;
 
 	Human currentTarget;
+
+	bool hasDestination = false;
 
 	override public bool IsEnemyOf(Actor actor)
 	{
@@ -31,7 +33,6 @@ public class Zombie : Actor
 		stateActions.Add(ZombieState.Advancing, Advance);
 
 		currentState = ZombieState.Advancing;
-		navMeshAgent.isStopped = true;
 	}
 
 	private void Update()
@@ -45,10 +46,10 @@ public class Zombie : Actor
 		Debug.DrawLine(transform.position, destination);
 		var delta = destination - transform.position;
 		delta = new Vector3(delta.x, 0, delta.z);
-		if (navMeshAgent.isStopped)
+		if (!hasDestination)
 		{
+			hasDestination = true;
 			navMeshAgent.SetDestination(destination);
-			navMeshAgent.isStopped = false;
 		}
 		WatchForHumans();
 	}
@@ -79,15 +80,14 @@ public class Zombie : Actor
 
 	void Chase()
 	{
-		Debug.DrawLine(transform.position, currentTarget.transform.position);
-
 		if (currentTarget == null)
 		{
 			currentState = ZombieState.Wandering;
 			return;
 		}
 
-		Walk(currentTarget.transform.position);
+		Debug.DrawLine(transform.position, currentTarget.transform.position);
+		Walk(currentTarget.transform.position - transform.position);
 		if ((currentTarget.transform.position - transform.position).magnitude < attackRange)
 		{
 			currentTarget.Damage(damageOnContact);

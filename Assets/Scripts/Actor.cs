@@ -24,7 +24,7 @@ public abstract class Actor : MonoBehaviour
 
 	[HideInInspector] public bool frozen = false;
 
-	[HideInInspector] public bool isWalking { get { return !navMeshAgent.isStopped; } set { navMeshAgent.isStopped = !value; } }
+	[HideInInspector] public bool isWalking { get { return navMeshAgent.isOnNavMesh && !navMeshAgent.isStopped; } set { navMeshAgent.isStopped = !value; } }
 
 	protected NavMeshAgent navMeshAgent;
 	bool isVulnerable { get { return (Time.time - lastDamageTime) > invulnerabilityTime; } }

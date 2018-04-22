@@ -8,18 +8,21 @@ public class GameDirector : SerializedMonoBehaviour
 
 	public Dictionary<SpawnType, GameObject> spawnPrefabs;
 
-	public List<EnemyWave> waves;
-
 	ZombieSpawner[] zombieSpawners;
 	HumanSpawner[] humanSpawners;
 	CrateSpawner[] crateSpawners;
 
-	int currentWaveIndex = 0;
-
+	public AudioClip pickupWeaponClip;
 	public GameObject healthBarPrefab;
 	public HumanBase humanBase;
 
 	public static GameDirector instance;
+
+	public static int actorCount = 0;
+
+	public int maxActorCount = 50;
+	public float initialDelay = 5f;
+	public float dayDuration = 120f;
 
 	private void Awake()
 	{
@@ -32,36 +35,68 @@ public class GameDirector : SerializedMonoBehaviour
 
 	void Start()
 	{
-		//Todo: make this a routine
-		SpawnNextWave();
+		StartCoroutine(RunningGame());
 	}
 
-	private void Update()
+	private IEnumerator RunningGame()
 	{
-		if (Input.GetKeyDown(KeyCode.Return))
+		Time.timeScale = 0f;
+		yield return new WaitUntil(() => Input.anyKeyDown);
+		Time.timeScale = 1f;
+
+		yield return new WaitForSeconds(initialDelay);
+		GetComponent<AudioSource>().Play();
+		int currentLevel = 1;
+		do
 		{
-			SpawnNextWave();
-		}
-	}
-
-	[Button("Spawn next wave")]
-	public void SpawnNextWave()
-	{
-		Debug.Log("Spawning wave: " + currentWaveIndex);
-		SpawnWave(waves[currentWaveIndex]);
-		//currentWaveIndex++;
-	}
-
-	void SpawnWave(EnemyWave wave)
-	{
-		foreach (var spawn in wave.spawns)
-		{
-			for (int i = 0; i < spawn.amount; i++)
+			Debug.Log("New level " + currentLevel);
+			int humanCount = Random.Range(1, 3);
+			for (int i = 0; i < humanCount; i++)
 			{
-				var targetPosition = GetSpawnPoint(spawn.type);
-				Instantiate(spawnPrefabs[spawn.type], targetPosition, Quaternion.identity);
+				AddActor(SpawnType.Human);
 			}
+			int crateCount = Random.Range(2, 3);
+			for (int i = 0; i < crateCount; i++)
+			{
+				AddActor(SpawnType.CrateBox);
+			}
+			yield return new WaitForSeconds(dayDuration * 0.5f);
+			if (currentLevel > 4)
+			{
+				for (int i = 0; i < currentLevel - 4; i++)
+				{
+					AddActor(SpawnType.HugeZombie);
+				}
+			}
+			if (currentLevel > 2)
+			{
+				for (int i = 0; i < (currentLevel - 1) * 2; i++)
+				{
+					AddActor(SpawnType.FatZombie);
+				}
+			}
+			for (int i = 0; i < currentLevel * 3; i++)
+			{
+				AddActor(SpawnType.CommonZombie);
+			}
+			yield return new WaitForSeconds(dayDuration * 0.5f);
+			currentLevel++;
+		} while (true);
+	}
+
+	void AddActor(SpawnType actorType)
+	{
+		if (actorCount <= maxActorCount)
+		{
+			var position = GetSpawnPoint(actorType);
+			Instantiate(spawnPrefabs[actorType], position, Quaternion.identity);
+			actorCount++;
 		}
+	}
+
+	public static void RemoveActor()
+	{
+		actorCount--;
 	}
 
 	private Vector3 GetSpawnPoint(SpawnType spawnType)
@@ -81,22 +116,6 @@ public class GameDirector : SerializedMonoBehaviour
 		}
 		return result;
 	}
-}
-
-[System.Serializable]
-public class EnemyWave
-{
-	public List<WaveSpawn> spawns;
-}
-
-[System.Serializable]
-public class WaveSpawn
-{
-	[HorizontalGroup("WaveSpawn")]
-	public int amount;
-	[HorizontalGroup("WaveSpawn")]
-	public float spawnTime = 0;
-	[EnumToggleButtons]public SpawnType type;
 }
 
 public enum SpawnType { None, Human, CommonZombie, FatZombie, HugeZombie, CrateBox }

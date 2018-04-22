@@ -18,7 +18,12 @@ public class AttackRange : MonoBehaviour {
 		actor = GetComponentInParent<Actor>();
 		lineRenderer = GetComponent<LineRenderer>();
 	}
-	
+
+	private void Update()
+	{
+		transform.position = new Vector3(transform.position.x, 0.1f, transform.position.z);
+	}
+
 	public void UpdateAttackArea()
 	{
 		float displayRadius = radius;

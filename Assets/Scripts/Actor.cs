@@ -14,6 +14,8 @@ public abstract class Actor : MonoBehaviour
 	public Weapon currentWeapon { get { return GetComponentInChildren<Weapon>(); } }
 	public float invulnerabilityTime = 0;
 	public RandomSoundClip hurtSounds;
+	
+	public bool canPickWeapons = false;
 
 	int currentLookPriority = 0;
 
@@ -30,7 +32,7 @@ public abstract class Actor : MonoBehaviour
 	bool isVulnerable { get { return (Time.time - lastDamageTime) > invulnerabilityTime; } }
 	float lastDamageTime = 0;
 
-	bool isAlive { get { return health > 0; } }
+	protected bool isAlive { get { return health > 0; } }
 
 	public abstract bool IsEnemyOf(Actor actor);
 
@@ -123,8 +125,10 @@ public abstract class Actor : MonoBehaviour
 		return false;
 	}
 
-	void Kill()
+	protected void Kill()
 	{
+		health = 0;
+		GameDirector.RemoveActor();
 		float killTime = 0.15f;
 		transform.DOScale(0, killTime).SetEase(Ease.InBack);
 		OnKillFx();

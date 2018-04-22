@@ -45,6 +45,14 @@ public class Zombie : Actor
 		var destination = GameDirector.instance.humanBase.transform.position;
 		Debug.DrawLine(transform.position, destination);
 		var delta = destination - transform.position;
+		if (delta.magnitude < 1f)
+		{
+			if (isAlive)
+			{
+				//TODO: Damage helicopter
+				Kill();
+			}
+		}
 		delta = new Vector3(delta.x, 0, delta.z);
 		if (!hasDestination)
 		{
@@ -103,6 +111,7 @@ public class Zombie : Actor
 	protected override void OnKillFx()
 	{
 		FxManager.DisplayFx("ZombieSplat", transform.position);
+		FxManager.SpawnZombieBits(transform.position, Mathf.RoundToInt(maxHealth/3f));
 	}
 
 }

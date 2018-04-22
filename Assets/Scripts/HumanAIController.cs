@@ -27,7 +27,7 @@ public class HumanAIController : Human
 		stateActions.Add(HumanState.Patroling, Patrol);
 		stateActions.Add(HumanState.Building, Build);
 
-		followDistance = Random.Range(1.5f, 3f);
+		followDistance = Random.Range(1f, 2f);
 	}
 
 	private void Update()
@@ -62,11 +62,12 @@ public class HumanAIController : Human
 
 	public void UseActionPoint(ActionPoint actionPoint)
 	{
-		if (actionPoint.isAvailable && currentWeapon != null)
+		if (actionPoint.isAvailable && currentWeapon != null && currentWeapon.range >= actionPoint.requiredRange)
 		{
 			currentlyFollowing = null;
 			transform.SetParent(actionPoint.transform, true);
-			currentTarget = actionPoint.transform;
+			currentTarget = actionPoint.destinationPoint;
+			navMeshAgent.SetDestination(actionPoint.destinationPoint.position);
 			currentState = HumanState.Guarding;
 		}
 	}
@@ -150,7 +151,7 @@ public class HumanAIController : Human
 	{
 		if ((transform.position - currentTarget.transform.position).magnitude > 0.1f)
 		{
-			Walk(currentTarget.gameObject);
+			
 		}
 		else
 		{

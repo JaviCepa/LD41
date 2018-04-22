@@ -43,11 +43,14 @@ public class HumanPlayer : Human
 
 	public void AssignFollower(ActionPoint actionPoint)
 	{
-		var follower = GetRandomFollower();
-		if (follower != null)
+		if (followers.Count>1)
 		{
-			followers.Remove(follower);
-			follower.UseActionPoint(actionPoint);
+			var follower = GetRandomFollower();
+			if (follower != null)
+			{
+				followers.Remove(follower);
+				follower.UseActionPoint(actionPoint);
+			}
 		}
 	}
 

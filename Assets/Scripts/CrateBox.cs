@@ -13,8 +13,21 @@ public class CrateBox : MonoBehaviour {
 
 	bool isOpen = false;
 
+	public GameObject forcedItem;
+
+	private void Start()
+	{
+		transform.position += Vector3.up * 5f;
+		transform.localScale = Vector3.zero;
+		var sequence = DOTween.Sequence();
+		sequence.Append(transform.DOScale(1f, 0.5f).SetEase(Ease.OutBack));
+		sequence.Append(transform.DOMoveY(-5, 1f).SetEase(Ease.OutBounce).SetRelative(true));
+	}
+
 	GameObject PickRandomItem()
 	{
+		if (forcedItem != null) { return forcedItem; }
+
 		float totalWeight = 0;
 		foreach (var item in contents)
 		{
@@ -24,9 +37,6 @@ public class CrateBox : MonoBehaviour {
 		float chance = Random.value;
 		float rarity = totalWeight * chance;
 		float currentValue = 0;
-		//Debug.Log("Chance was: " + chance * 100f);
-		//Debug.Log("Total weight: " + totalWeight);
-		//Debug.Log("Chance per weight: " + 100f/totalWeight + "%");
 
 		foreach (var item in contents)
 		{
@@ -63,6 +73,7 @@ public class CrateBox : MonoBehaviour {
 
 			isOpen = true;
 		}
+		GameDirector.RemoveActor();
 	}
 
 	[Button("Close")]

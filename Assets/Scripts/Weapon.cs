@@ -48,11 +48,12 @@ public class Weapon : MonoBehaviour
 
 	public void Pickup(Actor newOwner)
 	{
-		if (currentOwner == null && !newOwner.frozen)
+		if (currentOwner == null && !newOwner.frozen && newOwner.canPickWeapons && (newOwner.currentWeapon == null || newOwner.currentWeapon.damage < damage || newOwner.currentWeapon.range < range))
 		{
 			var ownerHand = newOwner.GetComponentInChildren<Hand>();
 			if (ownerHand != null && ownerHand.isReady)
 			{
+				AudioSource.PlayClipAtPoint(GameDirector.instance.pickupWeaponClip, Camera.main.transform.position);
 				lastUseTime = Time.time;
 				currentOwner = newOwner;
 				currentOwner.LookRight();

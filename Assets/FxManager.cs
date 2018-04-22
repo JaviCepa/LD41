@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,8 @@ public class FxManager : MonoBehaviour {
 
 	public static FxManager instance;
 
+	public float bitsExplosion = 10f;
+
 	Dictionary<string, GameObject> fxDictionary;
 	
 	void Awake()
@@ -18,6 +21,23 @@ public class FxManager : MonoBehaviour {
 		foreach (var effect in effects)
 		{
 			fxDictionary.Add(effect.name, effect);
+		}
+	}
+
+	[Button("TestZombieBits")]
+	public void TestZombieBits()
+	{
+		SpawnZombieBits(transform.position, 5);
+	}
+
+	public static void SpawnZombieBits(Vector3 position, int amount)
+	{
+		for (int i = 0; i < amount; i++)
+		{
+			Debug.Log(i);
+			var itemToSpawn = instance.fxDictionary["ZombieBits"];
+			var newObject = Instantiate(itemToSpawn, position+Random.insideUnitSphere*0.5f, Random.rotationUniform) as GameObject;
+			newObject.GetComponent<Rigidbody>().AddForce(Random.insideUnitSphere * Random.value * instance.bitsExplosion);
 		}
 	}
 	

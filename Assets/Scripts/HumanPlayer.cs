@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class HumanPlayer : Human
 {
 
 	public Actor actor { get { if (actor_ == null) { actor_ = GetComponent<Actor>(); }; return actor_; } }
 	Actor actor_;
+
+	public List<HumanAIController> followers;
 
 	void Update ()
 	{
@@ -34,4 +36,25 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
+	public void FollowerJoined(HumanAIController human)
+	{
+		followers.Add(human);
+	}
+
+	public void AssignFollower(ActionPoint actionPoint)
+	{
+		var follower = GetRandomFollower();
+		if (follower != null)
+		{
+			followers.Remove(follower);
+			follower.UseActionPoint(actionPoint);
+		}
+	}
+
+	private HumanAIController GetRandomFollower()
+	{
+		if (followers.Count == 0) { return null; }
+
+		return followers[Random.Range(0, followers.Count)];
+	}
 }

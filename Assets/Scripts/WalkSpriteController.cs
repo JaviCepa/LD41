@@ -19,9 +19,12 @@ public class WalkSpriteController : MonoBehaviour
 	Actor actorController { get { if (actorController_ == null) { actorController_ = GetComponentInParent<Actor>(); } return actorController_; } }
 	Actor actorController_;
 
+	AudioSource audioSource;
+
 	void Awake()
 	{
 		spritePicker = GetComponent<SpritePicker>();
+		audioSource = GetComponent<AudioSource>();
 		walkingTimer = Random.value * 2f;
 	}
 	
@@ -42,13 +45,16 @@ public class WalkSpriteController : MonoBehaviour
 			}
 			else if (walkingTimer < 1.0f)
 			{
+				if (audioSource != null && spriteRenderer.sprite == walkingSprite)
+				{
+					audioSource.pitch = 1f + 0.2f * (Random.value - 0.5f);
+					audioSource.Play();
+				};
 				transform.parent.localPosition = Vector3.zero;
 				spriteRenderer.sprite = standingSprite;
 			}
 			else
 			{
-				transform.parent.localPosition = Vector3.zero;
-				spriteRenderer.sprite = standingSprite;
 				walkingTimer -= 1f;
 			}
 			walkingTimer += Time.deltaTime * walkingAnimationSpeed;

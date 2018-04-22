@@ -9,23 +9,28 @@ public class AttackRange : MonoBehaviour {
 	float radius_ = 0;
 
 	public SphereCollider attackArea;
+	LineRenderer lineRenderer;
 
 	Actor actor;
 
 	private void Awake()
 	{
 		actor = GetComponentInParent<Actor>();
+		lineRenderer = GetComponent<LineRenderer>();
 	}
 	
 	public void UpdateAttackArea()
 	{
-		var lineRenderer = GetComponent<LineRenderer>();
+		float displayRadius = radius;
+		if (displayRadius < 2f) { displayRadius = 0; }
+		lineRenderer.enabled = displayRadius >= 2f;
+
 		for (int i = 0; i < lineRenderer.positionCount; i++)
 		{
 			float alpha = (float) i / (float) lineRenderer.positionCount;
 			float angle = alpha * 360 * Mathf.Deg2Rad;
 			var direction = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle));
-			var circlePosition = direction * radius;
+			var circlePosition = direction * displayRadius;
 			lineRenderer.SetPosition(i, circlePosition);
 		}
 		attackArea.radius = radius;

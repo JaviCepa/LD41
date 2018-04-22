@@ -21,6 +21,7 @@ public class Weapon : MonoBehaviour
 	[HideInInspector] public Transform cannonPosition;
 	[HideInInspector] public Sprite weaponSprite { get { return GetComponentInChildren<SpriteRenderer>().sprite; } }
 	public SphereCollider pickupCollider;
+	RandomSoundClip randomSoundClip;
 
 	Actor currentOwner = null;
 
@@ -33,6 +34,7 @@ public class Weapon : MonoBehaviour
 	private void Awake()
 	{
 		attackAnimation = GetComponentInChildren<DOTweenAnimation>();
+		randomSoundClip = GetComponentInChildren<RandomSoundClip>();
 		var cannon = GetComponentInChildren<WeaponCannon>();
 		if (cannon != null)
 		{
@@ -96,8 +98,8 @@ public class Weapon : MonoBehaviour
 	{
 		if (isReady && target != null)
 		{
-			//TODO: Do damage
 			currentOwner.LookTo(target.transform.position, 5);
+			currentOwner.Freeze();
 			attackAnimation.DORestart();
 			lastUseTime = Time.time;
 			Vector3 spawnPosition = transform.position;
@@ -105,9 +107,21 @@ public class Weapon : MonoBehaviour
 			{
 				spawnPosition = cannonPosition.position;
 			}
+
+			randomSoundClip.PlayRandomClip();
+
 			var newBulletObject = Instantiate(bulletPrefab, spawnPosition, Quaternion.identity) as GameObject;
 			var newBullet = newBulletObject.GetComponent<Bullet>();
 			newBullet.Initialize(bulletSprite, target.transform.position, bulletSpeed, damage);
+			Invoke("Unfreeze", Mathf.Min(rateOfFire * 0.25f, 0.5f));
+		}
+	}
+
+	void Unfreeze()
+	{
+		if (currentOwner != null)
+		{
+			currentOwner.Unfreeze();
 		}
 	}
 

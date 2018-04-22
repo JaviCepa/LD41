@@ -4,23 +4,53 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using DG.Tweening;
 
 public abstract class Actor : MonoBehaviour
 {
 
 	public float walkSpeed = 1;
-	public int health = 1;
+	public int maxHealth = 10;
 	public Weapon currentWeapon { get { return GetComponentInChildren<Weapon>(); } }
+	public float invulnerabilityTime = 0;
+	public RandomSoundClip hurtSounds;
+
 	int currentLookPriority = 0;
+
+	public int health { get { return currentHealth_; } set { currentHealth_ = value; healthBar.UpdateHealthBar((float)currentHealth_ / (float)maxHealth); } }
+	[ReadOnly]public int currentHealth_;
+
+	HealthBar healthBar;
 
 	[HideInInspector] public bool frozen = false;
 
 	[HideInInspector] public bool isWalking { get { return !navMeshAgent.isStopped; } set { navMeshAgent.isStopped = !value; } }
 
 	NavMeshAgent navMeshAgent;
+	bool isVulnerable { get { return (Time.time - lastDamageTime) > invulnerabilityTime; } }
+	float lastDamageTime = 0;
+
 	bool isAlive { get { return health > 0; } }
 
 	public abstract bool IsEnemyOf(Actor actor);
+
+	private void Awake()
+	{
+		navMeshAgent = GetComponent<NavMeshAgent>();
+		var newObject = Instantiate(GameDirector.instance.healthBarPrefab, transform);
+		newObject.transform.position = transform.position + Vector3.up * 1.5f;
+		healthBar = newObject.GetComponent<HealthBar>();
+		health = maxHealth;
+	}
+
+	protected void OnTriggerStay(Collider other)
+	{
+		var targetWeapon = other.GetComponent<Weapon>();
+		if (targetWeapon != null)
+		{
+			targetWeapon.Pickup(this);
+		}
+	}
 
 	public void Attack(Actor actor)
 	{
@@ -28,15 +58,6 @@ public abstract class Actor : MonoBehaviour
 		if (weapon != null)
 		{
 			currentWeapon.Use(actor);
-		}
-	}
-	
-	protected void OnTriggerStay(Collider other)
-	{
-		var targetWeapon = other.GetComponent<Weapon>();
-		if (targetWeapon != null)
-		{
-			targetWeapon.Pickup(this);
 		}
 	}
 
@@ -50,11 +71,6 @@ public abstract class Actor : MonoBehaviour
 		frozen = false;
 	}
 
-	private void Awake()
-	{
-		navMeshAgent = GetComponent<NavMeshAgent>();
-	}
-
 	[Button("Attack")]
 	public void Attack()
 	{
@@ -66,7 +82,10 @@ public abstract class Actor : MonoBehaviour
 
 	public void Walk(GameObject target)
 	{
-		Walk((target.transform.position - transform.position).normalized);
+		if (target != null)
+		{
+			Walk((target.transform.position - transform.position).normalized);
+		}
 	}
 
 	public void Walk(Vector3 direction)
@@ -84,21 +103,36 @@ public abstract class Actor : MonoBehaviour
 		isWalking = false;
 	}
 
-	public void Damage(int amount)
+	public bool Damage(int amount)
 	{
-		if (isAlive)
+		if (isAlive && isVulnerable)
 		{
 			health -= amount;
+			lastDamageTime = Time.time;
+			if (hurtSounds!=null)
+			{
+				hurtSounds.PlayRandomClip();
+			}
 			if (health <= 0)
 			{
 				Kill();
 			}
+			return true;
 		}
+		return false;
 	}
 
-	private void Kill()
+	void Kill()
 	{
-		Destroy(gameObject);
+		float killTime = 0.15f;
+		transform.DOScale(0, killTime).SetEase(Ease.InBack);
+		OnKillFx();
+		Destroy(gameObject, killTime);
+	}
+
+	protected virtual void OnKillFx()
+	{
+
 	}
 
 	public void LookTo(Vector3 lookPosition, int lookPriority = 0)

@@ -14,16 +14,18 @@ public class GameDirector : SerializedMonoBehaviour
 	HumanSpawner[] humanSpawners;
 	CrateSpawner[] crateSpawners;
 
-	HumanBase humanBase;
-
 	int currentWaveIndex = 0;
+
+	public GameObject healthBarPrefab;
+
+	public static GameDirector instance;
 
 	private void Awake()
 	{
+		instance = this;
 		zombieSpawners = FindObjectsOfType<ZombieSpawner>();
 		humanSpawners = FindObjectsOfType<HumanSpawner>();
 		crateSpawners = FindObjectsOfType<CrateSpawner>();
-		humanBase = FindObjectOfType<HumanBase>();
 	}
 
 	void Start()
@@ -47,7 +49,7 @@ public class GameDirector : SerializedMonoBehaviour
 			for (int i = 0; i < spawn.amount; i++)
 			{
 				var targetPosition = GetSpawnPoint(spawn.type);
-				var newSpawnObject = Instantiate(spawnPrefabs[spawn.type], targetPosition, Quaternion.identity) as GameObject;
+				Instantiate(spawnPrefabs[spawn.type], targetPosition, Quaternion.identity);
 			}
 		}
 	}

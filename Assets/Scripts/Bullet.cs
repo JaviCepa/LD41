@@ -9,6 +9,7 @@ public class Bullet : MonoBehaviour
 	Vector3 targetPosition;
 	public SpriteRenderer spriteRenderer;
 	int bulletDamage = 0;
+	bool used = false;
 
 	public void Initialize(Sprite bulletSprite, Vector3 target, float speed, int damage)
 	{
@@ -22,8 +23,12 @@ public class Bullet : MonoBehaviour
 
 	private void OnCollisionEnter(Collision collision)
 	{
-		collision.gameObject.SendMessage("Damage", bulletDamage, SendMessageOptions.DontRequireReceiver);
-		Destroy(gameObject);
+		if (!used)
+		{
+			collision.gameObject.SendMessage("Damage", bulletDamage, SendMessageOptions.DontRequireReceiver);
+			Destroy(gameObject);
+			used = true;
+		}
 	}
 
 }

@@ -134,8 +134,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9af051ff0fa7654db64926a734da68f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 1
-  health: 1
+  walkSpeed: 2
+  health: 10
+  frozen: 0
 --- !u!114 &114115508694875396
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -147,7 +148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b98a6db0b653f764eac834f85857a9dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _serializedBlackboard: '{"_variables":{"target":{"_name":"target","_id":"bbee3f0c-2ce8-49cd-9bc9-c34f03ed6821","$type":"NodeCanvas.Framework.Variable`1[[UnityEngine.GameObject,
+  _serializedBlackboard: '{"_variables":{"target":{"_name":"target","_id":"0eb55591-f81c-4500-8fac-25c056f098b8","$type":"NodeCanvas.Framework.Variable`1[[UnityEngine.GameObject,
+    UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"},"destination":{"_name":"destination","_id":"8d449e10-67a7-447d-a95a-bd18acf8d3b7","$type":"NodeCanvas.Framework.Variable`1[[UnityEngine.Transform,
     UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"}}}'
   _objectReferences: []
 --- !u!114 &114134163719258914

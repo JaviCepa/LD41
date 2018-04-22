@@ -18,6 +18,7 @@ public abstract class Actor : MonoBehaviour
 	[HideInInspector] public bool isWalking { get { return !navMeshAgent.isStopped; } set { navMeshAgent.isStopped = !value; } }
 
 	NavMeshAgent navMeshAgent;
+	bool isAlive { get { return health > 0; } }
 
 	public abstract bool IsEnemyOf(Actor actor);
 
@@ -81,6 +82,23 @@ public abstract class Actor : MonoBehaviour
 	public void StopWalking()
 	{
 		isWalking = false;
+	}
+
+	public void Damage(int amount)
+	{
+		if (isAlive)
+		{
+			health -= amount;
+			if (health <= 0)
+			{
+				Kill();
+			}
+		}
+	}
+
+	private void Kill()
+	{
+		Destroy(gameObject);
 	}
 
 	public void LookTo(Vector3 lookPosition, int lookPriority = 0)

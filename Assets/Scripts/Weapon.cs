@@ -2,15 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Sirenix.OdinInspector;
 
 public class Weapon : MonoBehaviour
 {
 
+	[Title("Weapon")]
 	public string weaponName;
 	public int damage;
 	public float range;
 	public float rateOfFire = 1f;
 
+	[Title("Bullet")]
+	public float bulletSpeed = 5f;
+	public Sprite bulletSprite;
+	public GameObject bulletPrefab;
+
+	[HideInInspector] public Transform cannonPosition;
 	[HideInInspector] public Sprite weaponSprite { get { return GetComponentInChildren<SpriteRenderer>().sprite; } }
 	public SphereCollider pickupCollider;
 
@@ -25,6 +33,15 @@ public class Weapon : MonoBehaviour
 	private void Awake()
 	{
 		attackAnimation = GetComponentInChildren<DOTweenAnimation>();
+		var cannon = GetComponentInChildren<WeaponCannon>();
+		if (cannon != null)
+		{
+			cannonPosition = cannon.transform;
+		}
+		else
+		{
+			cannonPosition = transform;
+		}
 	}
 
 	public void Pickup(Actor newOwner)
@@ -80,9 +97,17 @@ public class Weapon : MonoBehaviour
 		if (isReady && target != null)
 		{
 			//TODO: Do damage
-			currentOwner.LookTo(target.transform.position);
+			currentOwner.LookTo(target.transform.position, 5);
 			attackAnimation.DORestart();
 			lastUseTime = Time.time;
+			Vector3 spawnPosition = transform.position;
+			if (cannonPosition != null)
+			{
+				spawnPosition = cannonPosition.position;
+			}
+			var newBulletObject = Instantiate(bulletPrefab, spawnPosition, Quaternion.identity) as GameObject;
+			var newBullet = newBulletObject.GetComponent<Bullet>();
+			newBullet.Initialize(bulletSprite, target.transform.position, bulletSpeed, damage);
 		}
 	}
 

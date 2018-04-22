@@ -47,17 +47,47 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1179430272788286
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4102908346351640}
+  - component: {fileID: 114908334533265932}
+  m_Layer: 12
+  m_Name: Cannon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &4018243835589934
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1092643810018042}
-  m_LocalRotation: {x: 0.16634323, y: 0.4933959, z: -0.096755706, w: 0.84825045}
+  m_LocalRotation: {x: 0.16634326, y: 0.4933961, z: -0.09675578, w: 0.84825027}
   m_LocalPosition: {x: -0.05, y: 0, z: -0.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4102908346351640}
   m_Father: {fileID: 4769051129229212}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 22.19, y: 60.370003, z: 0.36}
+--- !u!4 &4102908346351640
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1179430272788286}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.75, y: 0.25, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4018243835589934}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4769051129229212
@@ -67,7 +97,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1166273580510454}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20, y: 0.1, z: -18}
+  m_LocalPosition: {x: -23.66, y: 0.1, z: -7.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4018243835589934}
@@ -95,7 +125,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1092643810018042}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e2a5ab3b66feef42b3361f04e9fcd6a, type: 3}
   m_Name: 
@@ -115,7 +145,23 @@ MonoBehaviour:
   damage: 10
   range: 10
   rateOfFire: 5
+  bulletSpeed: 50
+  bulletSprite: {fileID: 21300006, guid: cc8e59d63da59a248b9e28e79bec9863, type: 3}
+  bulletPrefab: {fileID: 1238915472315770, guid: 86684d433eee9f443a1662afa5c6f02e,
+    type: 2}
+  cannonPosition: {fileID: 0}
   pickupCollider: {fileID: 135429940243805390}
+--- !u!114 &114908334533265932
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1179430272788286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38af9e4c42bf9d84b9032c38d48dd934, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114943566771379336
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -172,8 +218,8 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   delay: 0
-  duration: 0.15
-  easeType: 26
+  duration: 0.3
+  easeType: 6
   easeCurve:
     serializedVersion: 2
     m_Curve:
@@ -208,7 +254,7 @@ MonoBehaviour:
   autoPlay: 0
   useTargetAsV3: 0
   endValueFloat: 0
-  endValueV3: {x: 0, y: 0, z: -90}
+  endValueV3: {x: 0, y: 0, z: 90}
   endValueV2: {x: 0, y: 0}
   endValueColor: {r: 1, g: 1, b: 1, a: 1}
   endValueString: 

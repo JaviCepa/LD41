@@ -215,7 +215,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1002729018500378}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20, y: 0.1, z: -2}
+  m_LocalPosition: {x: -25, y: 0.1, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4055751553418382}
@@ -355,28 +355,28 @@ MonoBehaviour:
   - {fileID: 114693250229448482}
   - {fileID: 114434381078610330}
   contents:
-  - weight: 9
+  - weight: 17
     itemPrefab: {fileID: 1211692438984296, guid: 9e8244ee4d37730429f531ecfaedec9e,
       type: 2}
-  - weight: 8
+  - weight: 15
     itemPrefab: {fileID: 1024959111448268, guid: fde7cb022f268e74192cd148eb7ddabf,
       type: 2}
-  - weight: 7
+  - weight: 13
     itemPrefab: {fileID: 1179772677746336, guid: 750a7628d9436c24cb7e6e6d6366e30c,
       type: 2}
-  - weight: 6
+  - weight: 11
     itemPrefab: {fileID: 1316681904427956, guid: 314631882040e6c4fa2fc5b80a5b9a43,
       type: 2}
-  - weight: 5
+  - weight: 9
     itemPrefab: {fileID: 1950830634986954, guid: d3247941317a81e4ea315d2c3c89f0ce,
       type: 2}
-  - weight: 4
+  - weight: 7
     itemPrefab: {fileID: 1308688900595186, guid: 34ed4e595abd86748b3e8d550c7d8add,
       type: 2}
-  - weight: 3
+  - weight: 5
     itemPrefab: {fileID: 1023173656794630, guid: 704af33d1115c8e4395a1e837c09e8c8,
       type: 2}
-  - weight: 2
+  - weight: 3
     itemPrefab: {fileID: 1166273580510454, guid: 8e2d16f61c6922345b02475e7bcc6699,
       type: 2}
   - weight: 1

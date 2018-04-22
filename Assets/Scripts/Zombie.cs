@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using NodeCanvas.Framework;
 
 public class Zombie : Actor
 {
@@ -9,4 +10,5 @@ public class Zombie : Actor
 	{
 		return !(actor is Zombie);
 	}
+	
 }

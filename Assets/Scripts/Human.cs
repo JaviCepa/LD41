@@ -34,7 +34,7 @@ public class Human : Actor
 		}
 		if (nearestObject != null)
 		{
-			LookTo(nearestObject.transform.position, 5);
+			LookTo(nearestObject.transform.position, 3);
 		}
 	}
 

@@ -213,6 +213,11 @@ MonoBehaviour:
   damage: 5
   range: 0.75
   rateOfFire: 1.5
+  bulletSpeed: 20
+  bulletSprite: {fileID: 0}
+  bulletPrefab: {fileID: 1238915472315770, guid: 86684d433eee9f443a1662afa5c6f02e,
+    type: 2}
+  cannonPosition: {fileID: 0}
   pickupCollider: {fileID: 135165286445541388}
 --- !u!114 &114569009722711724
 MonoBehaviour:

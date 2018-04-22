@@ -21,11 +21,16 @@ public class CrateBox : MonoBehaviour {
 			totalWeight += item.weight;
 		}
 
-		float pickedValue = totalWeight * Random.value;
+		float chance = Random.value;
+		float rarity = totalWeight * chance;
 		float currentValue = 0;
+		//Debug.Log("Chance was: " + chance * 100f);
+		//Debug.Log("Total weight: " + totalWeight);
+		//Debug.Log("Chance per weight: " + 100f/totalWeight + "%");
+
 		foreach (var item in contents)
 		{
-			if (currentValue >= pickedValue && pickedValue < currentValue + item.weight)
+			if (rarity >= currentValue  && rarity < currentValue + item.weight)
 			{
 				return item.itemPrefab;
 			}
@@ -80,7 +85,7 @@ public class CrateBox : MonoBehaviour {
 public class ItemChances
 {
 	[HorizontalGroup]
-	public int weight = 1;
+	public float weight = 1;
 	[HorizontalGroup]
 	public GameObject itemPrefab;
 	

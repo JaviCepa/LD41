@@ -102,8 +102,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: Club
   damage: 3
-  range: 0.75
-  rateOfFire: 1
+  range: 1.25
+  rateOfFire: 1.5
+  bulletSpeed: 20
+  bulletSprite: {fileID: 0}
+  bulletPrefab: {fileID: 1238915472315770, guid: 86684d433eee9f443a1662afa5c6f02e,
+    type: 2}
+  cannonPosition: {fileID: 0}
   pickupCollider: {fileID: 135767904484296446}
 --- !u!114 &114415747673231142
 MonoBehaviour:

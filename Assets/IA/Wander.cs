@@ -8,7 +8,7 @@ public class Wander : ActionTask<Actor>
 	
 	public BBParameter<float> minDistance = 0.5f;
 	public BBParameter<float> maxDistance = 20f;
-	//public BBParameter<float> maxTime = 10f;
+	public BBParameter<float> maxTime = 5f;
 
 	Vector3 target;
 
@@ -26,6 +26,10 @@ public class Wander : ActionTask<Actor>
 	protected override void OnUpdate()
 	{
 		agent.Walk(target);
+		if (elapsedTime > maxTime.value)
+		{
+			EndAction(true);
+		}
 	}
 
 }

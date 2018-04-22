@@ -12,6 +12,9 @@ public class GameDirector : SerializedMonoBehaviour
 
 	ZombieSpawner[] zombieSpawners;
 	HumanSpawner[] humanSpawners;
+	CrateSpawner[] crateSpawners;
+
+	HumanBase humanBase;
 
 	int currentWaveIndex = 0;
 
@@ -19,6 +22,14 @@ public class GameDirector : SerializedMonoBehaviour
 	{
 		zombieSpawners = FindObjectsOfType<ZombieSpawner>();
 		humanSpawners = FindObjectsOfType<HumanSpawner>();
+		crateSpawners = FindObjectsOfType<CrateSpawner>();
+		humanBase = FindObjectOfType<HumanBase>();
+	}
+
+	void Start()
+	{
+		//Todo: make this a routine
+		SpawnNextWave();
 	}
 
 	[Button("Spawn next wave")]
@@ -36,7 +47,7 @@ public class GameDirector : SerializedMonoBehaviour
 			for (int i = 0; i < spawn.amount; i++)
 			{
 				var targetPosition = GetSpawnPoint(spawn.type);
-				Instantiate(spawnPrefabs[spawn.type], targetPosition, Quaternion.identity);
+				var newSpawnObject = Instantiate(spawnPrefabs[spawn.type], targetPosition, Quaternion.identity) as GameObject;
 			}
 		}
 	}
@@ -51,6 +62,10 @@ public class GameDirector : SerializedMonoBehaviour
 		if (spawnType.ToString().Contains("Human"))
 		{
 			result = humanSpawners[Random.Range(0, humanSpawners.Length)].GetSpawnPoint();
+		}
+		if (spawnType.ToString().Contains("Crate"))
+		{
+			result = crateSpawners[Random.Range(0, crateSpawners.Length)].GetSpawnPoint();
 		}
 		return result;
 	}
@@ -72,4 +87,4 @@ public class WaveSpawn
 	[EnumToggleButtons]public SpawnType type;
 }
 
-public enum SpawnType { None, Human, CommonZombie, FatZombie, HugeZombie }
+public enum SpawnType { None, Human, CommonZombie, FatZombie, HugeZombie, CrateBox }

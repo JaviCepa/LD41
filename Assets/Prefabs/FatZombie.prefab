@@ -56,8 +56,6 @@ GameObject:
   - component: {fileID: 114095238677745732}
   - component: {fileID: 195859765276456472}
   - component: {fileID: 135497183328012972}
-  - component: {fileID: 114115508694875396}
-  - component: {fileID: 114414994129237346}
   - component: {fileID: 54570141319142060}
   - component: {fileID: 136342103481764224}
   m_Layer: 10
@@ -135,23 +133,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 2
-  health: 10
+  maxHealth: 10
+  invulnerabilityTime: 0
+  hurtSounds: {fileID: 0}
+  canPickWeapons: 0
+  currentHealth_: 0
   frozen: 0
---- !u!114 &114115508694875396
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1678558543937572}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b98a6db0b653f764eac834f85857a9dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _serializedBlackboard: '{"_variables":{"target":{"_name":"target","_id":"0eb55591-f81c-4500-8fac-25c056f098b8","$type":"NodeCanvas.Framework.Variable`1[[UnityEngine.GameObject,
-    UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"},"destination":{"_name":"destination","_id":"8d449e10-67a7-447d-a95a-bd18acf8d3b7","$type":"NodeCanvas.Framework.Variable`1[[UnityEngine.Transform,
-    UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"}}}'
-  _objectReferences: []
+  damageOnContact: 1
+  sightRadius: 3
+  currentState: 0
 --- !u!114 &114134163719258914
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -163,23 +153,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e2a5ab3b66feef42b3361f04e9fcd6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114414994129237346
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1678558543937572}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aad115aca74ce3c4891b3f6de0b4aae8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boundGraphSerialization: 
-  boundGraphObjectReferences: []
-  enableAction: 0
-  disableAction: 0
-  _graph: {fileID: 11400000, guid: e371d1975ffd6014eba7d130ca6c1321, type: 2}
-  _blackboard: {fileID: 114115508694875396}
 --- !u!114 &114676691212125502
 MonoBehaviour:
   m_ObjectHideFlags: 1

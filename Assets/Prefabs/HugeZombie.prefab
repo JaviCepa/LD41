@@ -40,8 +40,6 @@ GameObject:
   - component: {fileID: 114472732397844082}
   - component: {fileID: 195840409500034270}
   - component: {fileID: 135283919356162672}
-  - component: {fileID: 114351346129465410}
-  - component: {fileID: 114671589972083008}
   - component: {fileID: 54329656879744766}
   - component: {fileID: 136128323964347620}
   m_Layer: 10
@@ -167,21 +165,6 @@ MonoBehaviour:
     m_NumColorKeys: 4
     m_NumAlphaKeys: 2
   currentIndex: 0
---- !u!114 &114351346129465410
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1775369967595122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b98a6db0b653f764eac834f85857a9dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _serializedBlackboard: '{"_variables":{"target":{"_name":"target","_id":"0eb55591-f81c-4500-8fac-25c056f098b8","$type":"NodeCanvas.Framework.Variable`1[[UnityEngine.GameObject,
-    UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"},"destination":{"_name":"destination","_id":"8d449e10-67a7-447d-a95a-bd18acf8d3b7","$type":"NodeCanvas.Framework.Variable`1[[UnityEngine.Transform,
-    UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"}}}'
-  _objectReferences: []
 --- !u!114 &114472732397844082
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -194,8 +177,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 1
-  health: 50
+  maxHealth: 10
+  invulnerabilityTime: 0
+  hurtSounds: {fileID: 0}
+  canPickWeapons: 0
+  currentHealth_: 0
   frozen: 0
+  damageOnContact: 1
+  sightRadius: 3
+  currentState: 0
 --- !u!114 &114474073124133636
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -207,23 +197,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e2a5ab3b66feef42b3361f04e9fcd6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114671589972083008
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1775369967595122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aad115aca74ce3c4891b3f6de0b4aae8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boundGraphSerialization: 
-  boundGraphObjectReferences: []
-  enableAction: 0
-  disableAction: 0
-  _graph: {fileID: 11400000, guid: e371d1975ffd6014eba7d130ca6c1321, type: 2}
-  _blackboard: {fileID: 114351346129465410}
 --- !u!114 &114853229248083262
 MonoBehaviour:
   m_ObjectHideFlags: 1

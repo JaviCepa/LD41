@@ -329,12 +329,13 @@ MonoBehaviour:
   maxHealth: 10
   invulnerabilityTime: 0
   hurtSounds: {fileID: 114790616669546514}
+  canPickWeapons: 0
   currentHealth_: 0
   frozen: 0
   damageOnContact: 1
-  attackRange: 0.5
   sightRadius: 3
   currentState: 0
+  coinPrefab: {fileID: 1620627114114194, guid: 103606ed1fc861049ad85c8c5b146684, type: 2}
 --- !u!114 &114315397998986448
 MonoBehaviour:
   m_ObjectHideFlags: 1

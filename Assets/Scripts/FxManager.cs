@@ -34,7 +34,6 @@ public class FxManager : MonoBehaviour {
 	{
 		for (int i = 0; i < amount; i++)
 		{
-			Debug.Log(i);
 			var itemToSpawn = instance.fxDictionary["ZombieBits"];
 			var newObject = Instantiate(itemToSpawn, position+Random.insideUnitSphere*0.5f, Random.rotationUniform) as GameObject;
 			newObject.GetComponent<Rigidbody>().AddForce(Random.insideUnitSphere * Random.value * instance.bitsExplosion);

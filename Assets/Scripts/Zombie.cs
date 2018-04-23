@@ -20,6 +20,8 @@ public class Zombie : Actor
 
 	bool hasDestination = false;
 
+	public GameObject coinPrefab;
+
 	override public bool IsEnemyOf(Actor actor)
 	{
 		return !(actor is Zombie);
@@ -42,21 +44,11 @@ public class Zombie : Actor
 
 	private void Advance()
 	{
-		var destination = GameDirector.instance.humanBase.transform.position;
-		Debug.DrawLine(transform.position, destination);
-		var delta = destination - transform.position;
-		if (delta.magnitude < 1f)
+		if (GameDirector.instance.humanPlayer != null)
 		{
-			if (isAlive)
-			{
-				//TODO: Damage helicopter
-				Kill();
-			}
-		}
-		delta = new Vector3(delta.x, 0, delta.z);
-		if (!hasDestination)
-		{
-			hasDestination = true;
+			var destination = GameDirector.instance.humanPlayer.transform.position;
+			Debug.DrawLine(transform.position, destination);
+			var delta = destination - transform.position;
 			navMeshAgent.SetDestination(destination);
 		}
 		WatchForHumans();
@@ -112,6 +104,10 @@ public class Zombie : Actor
 	{
 		FxManager.DisplayFx("ZombieSplat", transform.position);
 		FxManager.SpawnZombieBits(transform.position, Mathf.RoundToInt(maxHealth/3f));
+		if (coinPrefab!=null)
+		{
+			Instantiate(coinPrefab, transform.position, coinPrefab.transform.rotation);
+		}
 	}
 
 }

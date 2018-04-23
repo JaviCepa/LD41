@@ -11,6 +11,8 @@ public class AttackRange : MonoBehaviour {
 	public SphereCollider attackArea;
 	LineRenderer lineRenderer;
 
+	public SpriteRenderer torsoRenderer;
+
 	Actor actor;
 
 	private void Awake()
@@ -39,6 +41,11 @@ public class AttackRange : MonoBehaviour {
 			lineRenderer.SetPosition(i, circlePosition);
 		}
 		attackArea.radius = radius;
+		if (torsoRenderer != null)
+		{
+			lineRenderer.startColor = torsoRenderer.color;
+			lineRenderer.endColor = torsoRenderer.color;
+		}
 	}
 
 	private void OnTriggerStay(Collider other)

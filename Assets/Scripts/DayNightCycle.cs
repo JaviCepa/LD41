@@ -22,7 +22,10 @@ public class DayNightCycle : MonoBehaviour
 		{
 			float phase = Mathf.Clamp01(Vector3.Dot(transform.forward, Vector3.down));
 			sunLight.intensity = phase * maxIntensity;
-			amplifyColor.BlendAmount = 1f - phase;
+			if (amplifyColor != null)
+			{
+				amplifyColor.BlendAmount = 1f - phase;
+			}
 		}
 	}
 }

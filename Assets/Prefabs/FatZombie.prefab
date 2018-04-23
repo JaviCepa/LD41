@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 2
-  maxHealth: 10
+  maxHealth: 100
   invulnerabilityTime: 0
   hurtSounds: {fileID: 0}
   canPickWeapons: 0
@@ -142,6 +142,7 @@ MonoBehaviour:
   damageOnContact: 1
   sightRadius: 3
   currentState: 0
+  coinPrefab: {fileID: 0}
 --- !u!114 &114134163719258914
 MonoBehaviour:
   m_ObjectHideFlags: 1
